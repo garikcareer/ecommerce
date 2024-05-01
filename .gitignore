@@ -2,7 +2,7 @@
 .idea/
 HELP.md
 target/
-!**/src/main/**/target/
+!ecommerce-backend/src/main/**/target/
 !**/src/test/**/target/
 *.iws
 *.iml
@@ -62,4 +62,3 @@ e2e/*.map
 
 # System Files
 .DS_Store/
-
