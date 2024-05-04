@@ -1,0 +1,3 @@
+rootProject.name = "ecommerce-project"
+
+include 'ecommerce-backend', 'ecommerce-frontend'
