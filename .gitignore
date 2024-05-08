@@ -31,3 +31,9 @@ build/
 
 # Log file
 *.log
+
+# Gradle
+.gradle
+!gradle-wrapper.jar
+!gradle-wrapper.properties
+
