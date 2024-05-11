@@ -36,4 +36,3 @@ build/
 .gradle
 !gradle-8.7-bin.zip
 !gradle-wrapper.properties
-
