@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.2.5'
     id 'io.spring.dependency-management' version '1.1.4'
+    id 'org.flywaydb' version '10.12.0'
 }
 
 group = 'com.ecommerce'
@@ -16,10 +17,15 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter'because 'Enable Spring Boot Starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web' because 'Enable Spring Spring Boot Web Starter'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' because 'Enable Spring JPA starter'
+    implementation 'com.mysql:mysql-connector-j' because 'Add MySQL J Connector Driver'
+
+//    if ("${gradle.buildProflie}" == 'local') {
+//        implementation 'org.flywaydb:flyway-mysql' because 'Add Flyway to manage mySQL database'
+//    }
+    testImplementation 'org.springframework.boot:spring-boot-starter-test' because 'Enable Spring Test starter'
 }
 
 tasks.named('test') {

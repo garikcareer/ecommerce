@@ -12,28 +12,28 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/product")
-public class ProductController {
+@RequestMapping(value = "/api")
+public class ProductRestController {
     @Autowired
     private ProductService productService;
 
-    @PostMapping(path = "/add",
+    // Create
+    @PostMapping(path = "/products/add",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> addProduct(@RequestBody Product product) {
-        Product newProduct = productService.addProduct(product);
-
+    public ResponseEntity<?> createProduct(@RequestBody Product product) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", HttpStatus.OK.value());
-        response.put("message", newProduct + " was added successfully.");
+        response.put("message", productService.addProduct(product));
         response.put("timestamp", System.currentTimeMillis());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping(path = "/get",
+    // READ
+    @GetMapping(path = "/products/get/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getProduct(@RequestParam("id") Long id) {
+    public ResponseEntity<?> getProduct(@PathVariable(name ="id") long id) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", HttpStatus.OK.value());
         response.put("message", productService.getProductById(id));
@@ -41,7 +41,7 @@ public class ProductController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping(path = "/get/all",
+    @GetMapping(path = "/products/get/all",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getProducts() {
@@ -52,26 +52,26 @@ public class ProductController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @PutMapping(path = "/update",
+    // UPDATE
+    @PutMapping(path = "/products/update/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> updateProduct(@RequestBody Product product, @RequestParam Long id) {
-        Product updateProduct = productService.updateProduct(product, id);
+    public ResponseEntity<?> updateProduct(@PathVariable(value ="id") long id, @RequestBody Product product) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", HttpStatus.OK.value());
-        response.put("message", "Product with ID (" + id + ") updated successfully with new values.");
+        response.put("message", productService.updateProduct(product, id));
         response.put("timestamp", System.currentTimeMillis());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @DeleteMapping(path = "/delete",
+    // DELETE
+    @DeleteMapping(path = "/products/delete/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> deleteProductById(@RequestParam("id") Long id) {
-        productService.deleteProductById(id);
+    public ResponseEntity<?> deleteProductById(@PathVariable(value ="id") long id) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", HttpStatus.OK.value());
-        response.put("message", "Product with ID (" + id + ") was deleted successfully.");
+        response.put("message", productService.deleteProductById(id));
         response.put("timestamp", System.currentTimeMillis());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

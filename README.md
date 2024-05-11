@@ -34,7 +34,6 @@ To execute the E Commerce application, you need to run backend first and then fr
 Back-end:
     Run Spring Boot configuration with a java file named Application.java _(Path location from source project: **com/example/companycompass/Application.java**)_
 
-
 Front-end:
     Open Terminal on IntelliJ and run Angular by writing **'ng serve'**
 
@@ -52,3 +51,4 @@ For contributing or using the software please contact me and feel free to make a
 
 ## License
 [MIT License](https://www.mit.edu/~amini/LICENSE.md)
+
