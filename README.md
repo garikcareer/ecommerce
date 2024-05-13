@@ -23,9 +23,11 @@ and javascript.
 - **Database**: MySQL
 
 ## Installation
-#### Gradle build is completed successfully
-#### Use latest JDK version (JDK 21) for the project.
-#### Ensure ecommercedb exists on your database
+#### - Use latest JDK version (JDK 21) for the project.
+#### - This project uses GIT LFS (Large file storage)
+#### Make sure you have GIT LFS installed on your machine and run 'git lfs fetch' to have gradle wrapper downloaded fully
+#### - Gradle build is completed successfully
+#### - Ensure ecommercedb exists on your database
 
 ## Usage
 ### Localhost

@@ -1,4 +1,3 @@
-rootProject.name = "ecommerce-project"
-
+rootProject.name = "ecommerce"
 include 'ecommerce-backend'
 include 'ecommerce-frontend'
