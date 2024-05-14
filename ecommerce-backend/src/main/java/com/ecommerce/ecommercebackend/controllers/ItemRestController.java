@@ -1,7 +1,7 @@
 package com.ecommerce.ecommercebackend.controllers;
 
-import com.ecommerce.ecommercebackend.models.Product;
-import com.ecommerce.ecommercebackend.services.ProductService;
+import com.ecommerce.ecommercebackend.models.Item;
+import com.ecommerce.ecommercebackend.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -13,65 +13,65 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/api")
-public class ProductRestController {
+public class ItemRestController {
     @Autowired
-    private ProductService productService;
+    private ItemService itemService;
 
     // Create
-    @PostMapping(path = "/products/add",
+    @PostMapping(path = "/items/add",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> createProduct(@RequestBody Product product) {
+    public ResponseEntity<?> createProduct(@RequestBody Item item) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", HttpStatus.OK.value());
-        response.put("message", productService.addProduct(product));
+        response.put("message", itemService.addItem(item));
         response.put("timestamp", System.currentTimeMillis());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     // READ
-    @GetMapping(path = "/products/get/{id}",
+    @GetMapping(path = "/items/get/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getProduct(@PathVariable(name ="id") long id) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", HttpStatus.OK.value());
-        response.put("message", productService.getProductById(id));
+        response.put("message", itemService.getItemById(id));
         response.put("timestamp", System.currentTimeMillis());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping(path = "/products/get/all",
+    @GetMapping(path = "/items/get/all",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getProducts() {
         Map<String, Object> response = new HashMap<>();
         response.put("status", HttpStatus.OK.value());
-        response.put("message", productService.getAllProducts());
+        response.put("message", itemService.getAllItems());
         response.put("timestamp", System.currentTimeMillis());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     // UPDATE
-    @PutMapping(path = "/products/update/{id}",
+    @PutMapping(path = "/items/update/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> updateProduct(@PathVariable(value ="id") long id, @RequestBody Product product) {
+    public ResponseEntity<?> updateProduct(@PathVariable(value ="id") long id, @RequestBody Item item) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", HttpStatus.OK.value());
-        response.put("message", productService.updateProduct(product, id));
+        response.put("message", itemService.updateItem(item, id));
         response.put("timestamp", System.currentTimeMillis());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     // DELETE
-    @DeleteMapping(path = "/products/delete/{id}",
+    @DeleteMapping(path = "/items/delete/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> deleteProductById(@PathVariable(value ="id") long id) {
         Map<String, Object> response = new HashMap<>();
         response.put("status", HttpStatus.OK.value());
-        response.put("message", productService.deleteProductById(id));
+        response.put("message", itemService.deleteItemById(id));
         response.put("timestamp", System.currentTimeMillis());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
