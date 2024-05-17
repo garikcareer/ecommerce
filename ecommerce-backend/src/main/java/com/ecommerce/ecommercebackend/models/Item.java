@@ -12,7 +12,6 @@ public class Item {
     private String itemTitle;
     @Column(name = "item_subtitle")
     private String itemSubTitle;
-
     public Item() {
 
     }

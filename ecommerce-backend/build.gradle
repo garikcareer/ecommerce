@@ -1,11 +1,38 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://download.red-gate.com/maven/release"
+        }
+    }
+
+    dependencies {
+        classpath 'com.mysql:mysql-connector-j:8.4.0'
+        classpath 'org.flywaydb:flyway-core:10.13.0'
+        classpath 'org.flywaydb:flyway-mysql:10.13.0'
+    }
+}
+
 plugins {
     id 'java'
     id 'org.springframework.boot' version '3.2.5'
     id 'io.spring.dependency-management' version '1.1.4'
+    id 'org.flywaydb.flyway' version '10.13.0'
 }
+
+apply plugin: 'org.flywaydb.flyway'
 
 group 'com.ecommerce'
 version '0.0.1-SNAPSHOT'
+
+flyway {
+print("Flyway: connecting & migrating database")
+    url = 'jdbc:mysql://localhost:3306/ecommercedb'
+    user = 'root'
+    password = 'admin'
+    schemas = ['items']
+    locations = ['classpath:flyway/db/migration/V1__create_ecommerce_schema.sql']
+}
 
 java {
     sourceCompatibility = 21
@@ -14,7 +41,9 @@ java {
 
 repositories {
     mavenCentral()
-
+    maven{
+        url "https://download.red-gate.com/maven/release"
+    }
 }
 
 springBoot {
@@ -33,16 +62,24 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'because 'Enable Spring Boot Starter'
     implementation 'org.springframework.boot:spring-boot-starter-web' because 'Enable Spring Spring Boot Web Starter'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa' because 'Enable Spring JPA starter'
-    implementation 'org.springframework.boot:org.springframework.boot.gradle.plugin:3.2.5' because 'Add Gradle Spring support'
+    implementation 'org.flywaydb:flyway-core:10.13.0'
+    implementation 'org.flywaydb:flyway-mysql:10.13.0'
 
-    implementation 'com.mysql:mysql-connector-j' because 'Add MySQL J Connector Driver'
-
+    implementation 'com.mysql:mysql-connector-j:8.4.0' because 'Add MySQL J Connector Driver'
 //    if ("${gradle.buildProfile}" == 'local') {
 //        implementation 'org.flywaydb:flyway-mysql' because 'Add Flyway to manage mySQL database'
 //    }
     testImplementation 'org.springframework.boot:spring-boot-starter-test' because 'Enable Spring Test starter'
 }
 
+flyway {
+    print("Flyway: connecting & migrating database")
+    url = 'jdbc:mysql://localhost:3306/ecommercedb'
+    user = 'root'
+    password = 'admin'
+//    schemas = ['products']
+    locations = ['classpath:db/migration']
+}
 //test {
 //    useJUnitPlatform()
 //}
