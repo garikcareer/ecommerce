@@ -1,19 +1,36 @@
-//plugins {
-//    id 'org.flywaydb.flyway' version '10.13.0'
-//}
+buildscript {
+    repositories {
+        mavenCentral()
+        maven{
+            url "https://download.red-gate.com/maven/release"
+        }
+    }
 
-//repositories {
-//    mavenCentral()
-//    maven{
-//        url "https://download.red-gate.com/maven/release"
-//    }
-//}
+    dependencies {
+        classpath 'com.mysql:mysql-connector-j:8.4.0'
+        classpath 'org.flywaydb:flyway-mysql:10.13.0'
+    }
+}
 
-//flyway {
-//    print("Flyway: connecting & migrating database")
-//    url = 'jdbc:mysql://localhost:3306/ecommercedb'
-//    user = 'root'
-//    password = 'admin'
-////    schemas = ['products']
-//    locations = ['classpath:db/migration']
-//}
+plugins {
+    id 'org.flywaydb.flyway' version '10.13.0'
+}
+
+apply plugin: 'org.flywaydb.flyway'
+
+repositories {
+    mavenCentral()
+    maven{
+        url "https://download.red-gate.com/maven/release"
+    }
+}
+
+flyway {
+    print("Flyway: connecting to mySQL database")
+    url = 'jdbc:mysql://localhost:3306/ecommercedb'
+    user = 'root'
+    password = 'admin'
+    locations = ['filesystem:db/migration']
+}
+
+defaultTasks 'flywayMigrate'

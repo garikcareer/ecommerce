@@ -1,8 +1,8 @@
 create table ecommercedb.item
 (
-    item_id       int unsigned as (null),
-    item_title    char(255) not null,
-    item_subtitle char(255) null,
+    item_id       bigint unsigned as (null) stored,
+    item_title    varchar(255) not null,
+    item_subtitle varchar(255) null,
     constraint item_pk
         primary key (item_id)
 )

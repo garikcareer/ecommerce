@@ -1,5 +1,5 @@
 rootProject.name = "ecommerce"
 
-include 'ecommerce-backend'
-include 'ecommerce-frontend'
-include 'ecommerce-database'
+
+include 'ecommerce-backend', 'ecommerce-frontend', 'ecommerce-database'
+project(':ecommerce-database').projectDir = new File("/workspace/ecommerce-database")

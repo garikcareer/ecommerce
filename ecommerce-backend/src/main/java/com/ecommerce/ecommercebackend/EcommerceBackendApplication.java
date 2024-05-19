@@ -10,5 +10,4 @@ public class EcommerceBackendApplication {
         SpringApplication application = new SpringApplication(EcommerceBackendApplication.class);
         application.run(args);
     }
-
 }
