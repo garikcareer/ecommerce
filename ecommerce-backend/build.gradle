@@ -52,9 +52,8 @@ dependencies {
 //        implementation 'org.flywaydb:flyway-mysql' because 'Add Flyway to manage mySQL database'
 //    }
     testImplementation 'org.springframework.boot:spring-boot-starter-test' because 'Enable Spring Test starter'
-//    project(':ecommerce-database')
+    implementation(project(':ecommerce-database'))
 }
-
 //test {
 //    useJUnitPlatform()
 //}
