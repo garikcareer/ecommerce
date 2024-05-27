@@ -52,5 +52,5 @@ For contributing or using the software please contact me and feel free to make a
 * [MySQL](https://www.mysql.com/)
 
 ## License
-[MIT License](https://www.mit.edu/~amini/LICENSE.md)
+Garik Arutyunyan 2024 [MIT License](https://www.mit.edu/~amini/LICENSE.md)
 
