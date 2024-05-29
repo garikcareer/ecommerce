@@ -7,4 +7,3 @@ create table ecommercedb.item
         primary key (item_id)
 )
     engine = InnoDB;
-
