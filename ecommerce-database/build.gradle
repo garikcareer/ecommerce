@@ -17,8 +17,6 @@ plugins {
     id 'org.flywaydb.flyway' version '10.13.0'
 }
 
-apply plugin: 'org.flywaydb.flyway'
-
 repositories {
     mavenCentral()
     maven{
@@ -30,7 +28,7 @@ flyway {
     print("Flyway: connecting to mySQL database")
     url = 'jdbc:mysql://localhost:3306/ecommercedb'
     user = 'root'
-    password = 'admin'
+    password = 'qwerty123'
     locations = ['filesystem:db/migration']
 }
 

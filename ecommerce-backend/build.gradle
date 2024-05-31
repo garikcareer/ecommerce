@@ -45,14 +45,17 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'because 'Enable Spring Boot Starter'
     implementation 'org.springframework.boot:spring-boot-starter-web' because 'Enable Spring Spring Boot Web Starter'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa' because 'Enable Spring JPA starter'
-
+    implementation 'org.flywaydb:flyway-mysql:10.13.0'
 //    implementation 'com.mysql:mysql-connector-j:8.4.0' because 'Add MySQL J Connector Driver'
-//    implementation 'org.flywaydb:flyway-mysql:10.13.0'
+
 //    if ("${gradle.buildProfile}" == 'local') {
 //        implementation 'org.flywaydb:flyway-mysql' because 'Add Flyway to manage mySQL database'
 //    }
     testImplementation 'org.springframework.boot:spring-boot-starter-test' because 'Enable Spring Test starter'
-    implementation(project(':ecommerce-database'))
+
+
+//    implementation(project(':ecommerce-database'))
+    // figure out how to do add flyway-mysql from ecommerce-database
 }
 //test {
 //    useJUnitPlatform()
