@@ -1,5 +1,5 @@
 ### IntelliJ IDEA ###
-.idea
+../../OneDrive/Desktop/ecommerce/.idea
 !ecommerce-backend/src/main/**/target/
 *.iws
 *.iml

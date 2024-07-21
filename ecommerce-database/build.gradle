@@ -7,14 +7,13 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.mysql:mysql-connector-j:8.4.0'
-        classpath 'org.flywaydb:flyway-mysql:10.13.0'
+        classpath "com.mysql:mysql-connector-j:${mySQLConnectorJVersion}"
     }
 }
 
 plugins {
     id 'java'
-    id 'org.flywaydb.flyway' version '10.13.0'
+    id 'org.flywaydb.flyway'
 }
 
 repositories {
@@ -25,11 +24,16 @@ repositories {
 }
 
 flyway {
-    print("Flyway: connecting to mySQL database")
-    url = 'jdbc:mysql://localhost:3306/ecommercedb'
-    user = 'root'
-    password = 'qwerty123'
+    url = "${mySQLUrl}"
+    user = "${mySQLUser}"
+    password = "${mySQLPassword}"
     locations = ['filesystem:db/migration']
+}
+
+dependencies {
+    implementation "com.mysql:mysql-connector-j:${mySQLConnectorJVersion}" because 'Add MySQL JConnector driver'
+    implementation "org.flywaydb:flyway-mysql:${flywayVersion}"
+    implementation "org.flywaydb:flyway-core:${flywayVersion}"
 }
 
 defaultTasks 'flywayMigrate'

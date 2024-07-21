@@ -4,22 +4,22 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.mysql:mysql-connector-j:8.4.0'
+        classpath "com.mysql:mysql-connector-j:${mySQLConnectorJVersion}"
     }
 }
 
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.2.5'
-    id 'io.spring.dependency-management' version '1.1.4'
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
 }
 
 group 'com.ecommerce'
 version '0.0.1-SNAPSHOT'
 
 java {
-    sourceCompatibility = 21
-    targetCompatibility = 21
+    sourceCompatibility = "${javaVersion}"
+    targetCompatibility = "${javaVersion}"
 }
 
 repositories {
@@ -42,21 +42,10 @@ springBoot {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter'because 'Enable Spring Boot Starter'
-    implementation 'org.springframework.boot:spring-boot-starter-web' because 'Enable Spring Spring Boot Web Starter'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' because 'Enable Spring JPA starter'
-    implementation 'org.flywaydb:flyway-mysql:10.13.0'
-//    implementation 'com.mysql:mysql-connector-j:8.4.0' because 'Add MySQL J Connector Driver'
+    implementation 'org.springframework.boot:spring-boot-starter' because 'Add spring boot starter'
+    implementation 'org.springframework.boot:spring-boot-starter-web' because 'Add spring boot web starter'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa' because 'Add spring boot JPA starter'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test' because 'Add spring boot test starter'
 
-//    if ("${gradle.buildProfile}" == 'local') {
-//        implementation 'org.flywaydb:flyway-mysql' because 'Add Flyway to manage mySQL database'
-//    }
-    testImplementation 'org.springframework.boot:spring-boot-starter-test' because 'Enable Spring Test starter'
-
-
-//    implementation(project(':ecommerce-database'))
-    // figure out how to do add flyway-mysql from ecommerce-database
+    implementation(project(':ecommerce-database'))
 }
-//test {
-//    useJUnitPlatform()
-//}

@@ -1,6 +1,10 @@
+pluginManagement {
+    plugins {
+        id 'org.flywaydb.flyway' version "${flywayVersion}"
+        id 'org.springframework.boot' version "${springBootVersion}"
+        id 'io.spring.dependency-management' version "${springDependencyManagement}"
+    }
+}
+
 rootProject.name = "ecommerce"
-
-
 include 'ecommerce-backend', 'ecommerce-frontend', 'ecommerce-database'
-project(':ecommerce-database').projectDir = new File("ecommerce-database")
-project(':ecommerce-backend').projectDir = new File("ecommerce-backend")
