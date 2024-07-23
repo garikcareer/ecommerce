@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class ItemServiceImpl implements ItemService {
@@ -24,12 +22,8 @@ public class ItemServiceImpl implements ItemService {
     // Read
     @Override
     public Item getItemById(Long itemId) {
-        Optional<Item> productOptional = itemRepository.findById(itemId);
-        if (productOptional.isPresent()) {
-            return productOptional.get();
-        } else {
-            throw new NoSuchElementException("No such item with " + itemId);
-        }
+        return itemRepository.findById(itemId).orElseThrow(() -> new NoSuchElementException("Item ID:" +
+                itemId + " was not found"));
     }
 
     @Override
@@ -40,23 +34,16 @@ public class ItemServiceImpl implements ItemService {
     // Update
     @Override
     public Item updateItem(Item item, Long itemId) {
-        Optional<Item> optionalItem = itemRepository.findById(itemId);
-
-        if (optionalItem.isPresent()) {
-            Item itemToUpdate = optionalItem.get();
-            if (Objects.nonNull(item.getItemTitle()) && !"".equalsIgnoreCase(item.getItemTitle())) {
-                itemToUpdate.setItemTitle(item.getItemTitle());
-            }
-            // Add more to edit columns
-            return itemRepository.save(itemToUpdate);
-        }
-        return null;
+        Item existingItem = itemRepository.findById(itemId).orElseThrow(() ->
+                new NoSuchElementException("Item ID: " + itemId + " was not found") );
+        existingItem.setItemName(item.getItemName());
+        existingItem.setItemDescription(item.getItemDescription());
+        return itemRepository.save(existingItem);
     }
 
     // Delete
     @Override
-    public boolean deleteItemById(Long itemId) {
+    public void deleteItemById(Long itemId) {
         itemRepository.deleteById(itemId);
-        return true;
     }
 }

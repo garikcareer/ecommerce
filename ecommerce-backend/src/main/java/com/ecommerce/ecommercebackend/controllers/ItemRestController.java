@@ -57,9 +57,11 @@ public class ItemRestController {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> updateProduct(@PathVariable(value ="id") long id, @RequestBody Item item) {
+        Item newItem = itemService.updateItem(item, id);
+
         Map<String, Object> response = new HashMap<>();
         response.put("status", HttpStatus.OK.value());
-        response.put("message", itemService.updateItem(item, id));
+        response.put("message", "Item updated successfully with values " + newItem);
         response.put("timestamp", System.currentTimeMillis());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -69,9 +71,11 @@ public class ItemRestController {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> deleteProductById(@PathVariable(value ="id") long id) {
+        itemService.deleteItemById(id);
+
         Map<String, Object> response = new HashMap<>();
         response.put("status", HttpStatus.OK.value());
-        response.put("message", itemService.deleteItemById(id));
+        response.put("message", "Item deleted successfully");
         response.put("timestamp", System.currentTimeMillis());
         return new ResponseEntity<>(response, HttpStatus.OK);
     }

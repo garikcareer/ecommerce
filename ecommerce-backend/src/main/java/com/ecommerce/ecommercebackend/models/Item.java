@@ -6,13 +6,17 @@ import jakarta.persistence.*;
 @Table(name = "item")
 public class Item {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name ="item_id", nullable = false)
-    private long itemId;
-    @Column(name = "item_title", nullable = false)
-    private String itemTitle;
-    @Column(name = "item_subtitle")
-    private String itemSubTitle;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long itemId;
+    @Column(name = "item_name", nullable = false)
+    private String itemName;
+    @Column(name = "item_description")
+    private String itemDescription;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
+    private Product product;
+
     public Item() {
 
     }
@@ -21,17 +25,25 @@ public class Item {
     public String toString() {
         return "Item{" +
                 "itemId=" + itemId +
-                ", itemTitle='" + itemTitle + '\'' +
-                ", itemSubTitle='" + itemSubTitle + '\'' +
+                ", itemTitle='" + itemName + '\'' +
+                ", itemSubTitle='" + itemDescription + '\'' +
                 '}';
     }
 
-    public String getItemTitle() {
-        return itemTitle;
+    public String getItemName() {
+        return itemName;
     }
 
-    public void setItemTitle(String itemTitle) {
-        this.itemTitle = itemTitle;
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
+    public String getItemDescription() {
+        return itemDescription;
+    }
+
+    public void setItemDescription(String itemDescription) {
+        this.itemDescription = itemDescription;
     }
 }
 
