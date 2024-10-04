@@ -7,7 +7,6 @@
 - [Usage](#usage)
 - [References](#references)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Introduction
 TBD...
@@ -50,7 +49,4 @@ For contributing or using the software please contact me and feel free to make a
 * [Spring Boot](https://spring.io/projects/spring-boot)
 * [Angular](https://angular.dev/)
 * [MySQL](https://www.mysql.com/)
-
-## License
-Garik Arutyunyan 2024 [MIT License](https://www.mit.edu/~amini/LICENSE.md)
 
